@@ -79,18 +79,20 @@ function carritoHtml() {
     //Limpia el HTML
     limpiarHtml();
     //Crea un elemento html para cada curso con incluyendo sus datos
-    listaSelecciones.forEach( curso => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td><img src='${curso.imagen}' width='100' </td>
-            <td>${curso.titulo}</td>
-            <td>${curso.precio}</td>
-            <td>${curso.cantidad}</td>
-            <td> <a href='#' class='borrar-curso' data-id='${curso.id}'>X</a> </td>
-        `;
-        //Agregar el HTML en el tbody del carrito
-        contenedorCarrito.appendChild(row);
-    })
+    if(listaSelecciones) {
+      listaSelecciones.forEach( curso => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+              <td><img src='${curso.imagen}' width='100' </td>
+              <td>${curso.titulo}</td>
+              <td>${curso.precio}</td>
+              <td>${curso.cantidad}</td>
+              <td> <a href='#' class='borrar-curso' data-id='${curso.id}'>X</a> </td>
+          `;
+          //Agregar el HTML en el tbody del carrito
+          contenedorCarrito.appendChild(row);
+      })
+    }
 }
 //Elimina un curso del carrito 
 function removerCurso(e) {
