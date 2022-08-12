@@ -25,9 +25,13 @@ function iniciarApp() {
 
 //Obtiene los datos de cursos guardados previamente en el local storage
 function getFromStorage() {
-    listaSelecciones = JSON.parse( localStorage.getItem('carrito') )
-    console.log(listaSelecciones);
-    carritoHtml();
+    const test = JSON.parse( localStorage.getItem('carrito') ) //Revisa si la key solicitada en el local storage si tiene algun valor I.e. si el local storage esta vacio
+    if(test == null) { //Si el ls esta vacio asigan listaSelecciones como array vacio
+      return
+    }else{ 
+      listaSelecciones = JSON.parse( localStorage.getItem('carrito') ) //Si local storage no esta vacio asigna sus valores al array
+      carritoHtml(); //LLama la funcion para llenar carrito con valores del ls
+    }
 }
 
 //Identifica el curso que se ha seleccionado
@@ -69,10 +73,8 @@ function modificarLista(curso) {
     }else{
         listaSelecciones = [...listaSelecciones, curso]
     }
-    console.log(listaSelecciones);
     localStorage.setItem('carrito', JSON.stringify(listaSelecciones));
     carritoHtml();
-
 }
 //Muestra los datos de la lista de selecciones en el carrito 
 function carritoHtml() {
