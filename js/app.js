@@ -38,8 +38,6 @@ function getFromStorage() {
 function agregarCurso(e){
     e.preventDefault();
     if(e.target.classList.contains('agregar-carrito')){
-        console.log('presionando curso');
-        console.log(e.target.parentElement);
         let seleccion = e.target.parentElement.parentElement;
         leerInfoCurso(seleccion);
     }
@@ -111,8 +109,6 @@ function removerCurso(e) {
                 return true;
             }
         })
-
-        console.log(filteredList);
         listaSelecciones = [...filteredList]
         localStorage.setItem('carrito', JSON.stringify(listaSelecciones));
         carritoHtml();
